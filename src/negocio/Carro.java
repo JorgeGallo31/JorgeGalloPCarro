@@ -3,6 +3,23 @@ package negocio;
 public class Carro {
     private int potencia;
     private double velocidad;
+    //atributo de clase
+    private static int numCarros = 0;
+    //constante de clase
+    private static final double IVA=0.15;
+
+    public Carro(int potencia,double velocidad){
+       /* this.potencia = potencia;
+        this.velocidad = velocidad;*/
+        //si los atributos tienen validaciones utilizar el set//
+        setPotencia(potencia);
+        setVelocidad(velocidad);
+        numCarros++;
+    }
+
+    public Carro() {
+        numCarros++;
+    }
 
     /*
     ingreso de informacion
@@ -19,6 +36,8 @@ public class Carro {
     }
 
     public void setVelocidad(double velocidad){
+        if (velocidad < 0)
+            velocidad = 0.0;
         this.velocidad = velocidad;
     }
     /*
@@ -33,6 +52,18 @@ public class Carro {
 
     public double getVelocidad(){
         return velocidad;
+    }
+
+    public static int getNumCarros(){
+        return numCarros;
+    }
+
+    public static double getIva(){
+        return IVA;
+    }
+
+    public double calcularPrecioTotal(double precio){
+        return precio + (precio * IVA);
     }
     void acelerar(){
         velocidad += potencia;
